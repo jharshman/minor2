@@ -22,11 +22,13 @@ BigInt::BigInt(string num) {
         }
 }
 
+/* constructor for known signed values */
 BigInt::BigInt(string num, bool sign) {
         setNum(num);
         setSign(sign);
 }
 
+/* constructor for passing int values */
 BigInt::BigInt(int n) {
         string num = to_string(n); // quickest conversion.  ref: http://stackoverflow.com/questions/5590381/easiest-way-to-convert-int-to-string-in-c
        // new BigInt(num); // create bigint out of string :) 
@@ -40,14 +42,18 @@ BigInt::BigInt(int n) {
         }
 }
 
+/* copy constructor */
 BigInt::BigInt(const BigInt &orig) {
         setNum(orig.getNum());
         setSign(orig.getSign());
 }
 
+/* set num variable */
 void BigInt::setNum(string num) {
         setNum(num);
 }
+
+/* set sign variable */
 void BigInt::setSign(bool sign) {
         setSign(sign);
 }
@@ -57,9 +63,9 @@ void BigInt::setSign(bool sign) {
 // --- Methods implemented from Java API below --- 
 // http://docs.oracle.com/javase/8/docs/api/java/math/BigInteger.html
 // http://docs.oracle.com/javase/7/docs/api/java/math/BigInteger.html
-
+/* get absolute value for the number */
 BigInt BigInt::absolute() {
-        return BigInt(getNum());
+        return BigInt(getNum()); // returns number w/o the sign
 }
 
 // --- End Big Integer Java 8 API Methods --- 
@@ -287,6 +293,7 @@ string BigInt::multiply(string a, string b) {
 
         return result;
 }
+
 /*
 // Might not need
 string BigInt::toString(long long num) {
