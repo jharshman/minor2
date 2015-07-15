@@ -6,8 +6,12 @@
 
 #ifndef __BIGINTEGER_H__
 #define __BIGINTEGER_H__
-
+#define MAXSIZE 1000 // any higher and you're doing it wrong 
+#include <iostream>
+#include <sstream>
+#include <cmath>
 #include <string>
+
 using namespace std;
 
 class BigInt {
