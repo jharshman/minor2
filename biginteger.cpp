@@ -251,11 +251,21 @@ string BigInt::multiply(string a, string b) {
         return result;
 }
 
+/* to string */
+string BigInt::toString(long long num) {
+        string s = to_string(num);
+        return s;
+}
 
 
-
-
-
+/* to int */
+long long BigInt::toInt(string s) {
+        long long result=0;
+        for(int i=0;i<s.length();i++) 
+                result=(result*10) + (result[i]-'0');
+        
+        return result;
+}
 
 
 
