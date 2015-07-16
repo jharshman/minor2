@@ -46,8 +46,6 @@ class BigInt {
                 BigInt operator+(BigInt bi); 
                 BigInt operator-(BigInt bi);
                 BigInt operator*(BigInt bi);
-                //BigInt &operator[](int num);
-                //operator string();
                 
         private:
                 /* helper comparative methods */
@@ -60,9 +58,6 @@ class BigInt {
                 string subtract(string a, string b);
                 string multiply(string a, string b);
 
-                /* helper methods */
-                //string toString(long long num);
-                //long long toInt(string num);
 
 }; 
                 
