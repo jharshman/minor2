@@ -65,7 +65,6 @@ BigInt BigInt::absolute() {
 // --- End Big Integer Java 8 API Methods --- 
 
 
-
 // --- Operator Overloading ---  
 
 bool BigInt::operator>(BigInt num) {
@@ -123,7 +122,7 @@ BigInt BigInt::operator-(BigInt num) {
         num.setSign(!num.getSign());
         return (*this) + num;
 }
-
+/*
 // Might not need
 BigInt::operator string() {
         string s;
@@ -140,12 +139,11 @@ BigInt::operator string() {
 BigInt& BigInt::operator[](int num) {
         return *(this+(num*sizeof(BigInt)));
 }
-
+*/
 // --- End Operator Overloads ---
 
 
 // --- Private Helper Methods ---
-
 
 bool BigInt::equals(BigInt a, BigInt b) {
         return a.getNum() == b.getNum() && a.getSign() == b.getSign();
@@ -289,7 +287,7 @@ string BigInt::multiply(string a, string b) {
 
         return result;
 }
-
+/*
 // Might not need
 string BigInt::toString(long long num) {
         string s = to_string(num);
@@ -304,6 +302,6 @@ long long BigInt::toInt(string s) {
         
         return result;
 }
-
+*/
 
 

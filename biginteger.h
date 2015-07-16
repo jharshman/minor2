@@ -4,8 +4,8 @@
  * 07/14/15
  * */
 
-//#ifndef __BIGINTEGER_H__
-//#define __BIGINTEGER_H__
+#ifndef __BIGINTEGER_H__
+#define __BIGINTEGER_H__
 #define MAXSIZE 1000 // any higher and you're doing it wrong 
 #include <iostream>
 #include <sstream>
@@ -46,8 +46,8 @@ class BigInt {
                 BigInt operator+(BigInt bi); 
                 BigInt operator-(BigInt bi);
                 BigInt operator*(BigInt bi);
-                BigInt &operator[](int num);
-                operator string();
+                //BigInt &operator[](int num);
+                //operator string();
                 
         private:
                 /* helper comparative methods */
@@ -61,10 +61,10 @@ class BigInt {
                 string multiply(string a, string b);
 
                 /* helper methods */
-                string toString(long long num);
-                long long toInt(string num);
+                //string toString(long long num);
+                //long long toInt(string num);
 
 }; 
 
 
-//#endif
+#endif
