@@ -164,22 +164,6 @@ BigInt BigInt::operator-(BigInt num) {
         return (*this) + num;
 }
 
-/* //Might not need
-BigInt::operator string() {
-        string s;
-        if(getSign()) {
-                s="-";
-        }
-        else {
-                s="";
-        }
-        return s;
-}
-
-BigInt& BigInt::operator[](int num) {
-        return *(this+(num*sizeof(BigInt)));
-}
-*/
 // --- End Operator Overloads ---
 
 
@@ -327,22 +311,4 @@ string BigInt::multiply(string a, string b) {
 
         return result;
 }
-
-/*
-// Might not need
-string BigInt::toString(long long num) {
-        string s = to_string(num);
-        return s;
-}
-
-// Might not need
-long long BigInt::toInt(string s) {
-        long long result=0;
-        for(int i=0;i<s.length();i++) 
-                result=(result*10) + (s[i]-'0');
-        
-        return result;
-}
-*/
-
 
