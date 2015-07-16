@@ -128,6 +128,7 @@ bool BigInt::operator==(BigInt num) {
 BigInt BigInt::operator*(BigInt num) { 
         BigInt result;
         string product = multiply(getNum(),num.getNum());
+        result.setSign(getSign()!=num.getSign());
         result.setNum(product);
         return result;
 }
@@ -278,7 +279,7 @@ string BigInt::multiply(string a, string b) {
         if(a.length()>b.length())
                 a.swap(b);
         
-        // for-loop magic for multiplication found online
+        // nested for-loop magic for multiplication found online
         for(int i=a.length()-1;i>=0;--i) {
                 tmp=b;
                 cdig=a[i]-'0';
