@@ -4,8 +4,8 @@
  * 07/14/15
  * */
 
-#ifndef __BIGINTEGER_H__
-#define __BIGINTEGER_H__
+//#ifndef __BIGINTEGER_H__
+//#define __BIGINTEGER_H__
 #define MAXSIZE 1000 // any higher and you're doing it wrong 
 #include <iostream>
 #include <sstream>
@@ -16,7 +16,7 @@ using namespace std;
 
 class BigInt {
         private:
-                string number;
+                string num;
                 bool sign;
 
         public:
@@ -25,12 +25,12 @@ class BigInt {
                 BigInt(string num=0); // defaults to zero
                 BigInt(string num, bool sign);
                 BigInt(int num);
-                ~BigInt();
-                BigInt(cont BigInt &orig);
+                ~BigInt() {};
+                BigInt(const BigInt &orig);
 
                 /* gets and sets */
-                bool &getSign() const { return sign; }
-                string &getNum() const { return num; }
+                bool getSign() const { return sign; }
+                string getNum() const { return num; }
 
                 void setNum(string num);
                 void setSign(bool sign);
@@ -39,23 +39,26 @@ class BigInt {
                 BigInt absolute();
 
                 /* Overloaded Operators */ 
-                BigInt operator==(BigInt bi); // not required by assignment but comes in handy
-                BigInt operator=(BigInt bi); 
+                bool operator>(BigInt bi);
+                bool operator<(BigInt bi);
+                bool operator==(BigInt bi); // not required by assignment but comes in handy
+                void operator=(BigInt bi); 
                 BigInt operator+(BigInt bi); 
                 BigInt operator-(BigInt bi);
                 BigInt operator*(BigInt bi);
-                BigInt operator string();
+                BigInt &operator[](int num);
+                operator string();
                 
         private:
                 /* helper comparative methods */
                 bool equals(BigInt a, BigInt b);
-                //bool less(BigInt a, BigInt b);
-                //bool greater(BingInt a, BigInt b);
+                bool less(BigInt a, BigInt b);
+                bool greater(BigInt a, BigInt b);
 
                 /* helper methods for math operations */
-                string add(BigInt a, BigInt b);
-                string subtract(BigInt a, BigInt b);
-                string multiply(BigInt a, BigInt b);
+                string add(string a, string b);
+                string subtract(string a, string b);
+                string multiply(string a, string b);
 
                 /* helper methods */
                 string toString(long long num);
@@ -64,4 +67,4 @@ class BigInt {
 }; 
 
 
-#endif
+//#endif

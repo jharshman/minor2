@@ -7,7 +7,7 @@
 #include "biginteger.h"
 
 /* constructor for unknown signed values */
-BigInt::BigInt(string num=0) {
+BigInt::BigInt(string num) {
 
         //on the off chance that the number is signed, 
         //and this constructor is called accidentally
@@ -22,23 +22,33 @@ BigInt::BigInt(string num=0) {
         }
 }
 
-/* Simple constructor for known signed values */
 BigInt::BigInt(string num, bool sign) {
         setNum(num);
         setSign(sign);
 }
 
-/* Constructor for int */
 BigInt::BigInt(int n) {
         string num = to_string(n); // quickest conversion.  ref: http://stackoverflow.com/questions/5590381/easiest-way-to-convert-int-to-string-in-c
-        BigInt(num); // create bigint out of string :) 
+       // new BigInt(num); // create bigint out of string :) 
+        if(isdigit(num[0])) {
+                setNum(num);
+                sign=false;
+        }
+        else {
+                setNum(num.substr(1));
+                sign=true;
+        }
 }
 
-/* Set routines for number and sign */
-void setNum(string num) {
+BigInt::BigInt(const BigInt &orig) {
+        setNum(orig.getNum());
+        setSign(orig.getSign());
+}
+
+void BigInt::setNum(string num) {
         setNum(num);
 }
-void setSign(bool sign) {
+void BigInt::setSign(bool sign) {
         setSign(sign);
 }
 
@@ -48,7 +58,6 @@ void setSign(bool sign) {
 // http://docs.oracle.com/javase/8/docs/api/java/math/BigInteger.html
 // http://docs.oracle.com/javase/7/docs/api/java/math/BigInteger.html
 
-/* routine to fetch absolute value */
 BigInt BigInt::absolute() {
         return BigInt(getNum());
 }
@@ -59,19 +68,23 @@ BigInt BigInt::absolute() {
 
 // --- Operator Overloading ---  
 
-/* Overloaded assignment operator */
-void BigInt::operator=(BigInt num) {
-        setNum(num.getNum());
-        setSign(numb.getSign);
+bool BigInt::operator>(BigInt num) {
+        return greater((*this),num);
 }
 
-/* Overloaded equality operator */
+bool BigInt::operator<(BigInt num) {
+        return less((*this),num);
+}
+
+void BigInt::operator=(BigInt num) {
+        setNum(num.getNum());
+        setSign(num.getSign());
+}
+
 bool BigInt::operator==(BigInt num) {
         return equals(*this, num);
 }
 
-
-/* multiplication */
 BigInt BigInt::operator*(BigInt num) { 
         BigInt result;
         string product = multiply(getNum(),num.getNum());
@@ -79,12 +92,11 @@ BigInt BigInt::operator*(BigInt num) {
         return result;
 }
 
-/* addition */
 BigInt BigInt::operator+(BigInt num) {
         BigInt result;
         string sum;
         // need to test if the number is signed
-        if(getSign == num.getSign()) {
+        if(getSign() == num.getSign()) {
                 //sign the same
                 result.setSign(getSign());
                 sum = add(getNum(), num.getNum());
@@ -100,21 +112,19 @@ BigInt BigInt::operator+(BigInt num) {
                 else {
                         result.setSign(num.getSign());
                         sum=subtract(num.getNum(), getNum());
-                        result.setnum(sum);
+                        result.setNum(sum);
                 }
         }
 
         return result;
 }
 
-/* subtraction */
-BigInt operator-(BigInt num) {
+BigInt BigInt::operator-(BigInt num) {
         num.setSign(!num.getSign());
         return (*this) + num;
 }
 
-/* quick conversion for funzies */
-BigInt BigInt::operator string() {
+BigInt::operator string() {
         string s;
         if(getSign()) {
                 s="-";
@@ -125,6 +135,11 @@ BigInt BigInt::operator string() {
         return s;
 }
 
+// might not need this
+BigInt& BigInt::operator[](int num) {
+        return *(this+(num*sizeof(BigInt)));
+}
+
 // --- End Operator Overloads ---
 
 
@@ -132,12 +147,10 @@ BigInt BigInt::operator string() {
 // --- Private Helper Methods ---
 
 
-/* equals routine */
 bool BigInt::equals(BigInt a, BigInt b) {
         return a.getNum() == b.getNum() && a.getSign() == b.getSign();
 }
 
-/* add */
 string BigInt::add(string a, string b) {
         string result;
         char c='0';
@@ -168,14 +181,13 @@ string BigInt::add(string a, string b) {
                         }
                 }
         }
-        if(add[0]>'9') {
+        if(result[0] > '9') {
                 result[0]-=10;
                 result.insert(0,1,'1');
         }
         return result;
 }
 
-/* subtract */
 string BigInt::subtract(string a, string b) {
         string result;
         int diff=abs((int)(a.size()-b.size()));
@@ -206,7 +218,6 @@ string BigInt::subtract(string a, string b) {
         return result;
 }
 
-/* multiply */
 string BigInt::multiply(string a, string b) {
        
         string result="0";
@@ -251,23 +262,18 @@ string BigInt::multiply(string a, string b) {
         return result;
 }
 
-/* to string */
 string BigInt::toString(long long num) {
         string s = to_string(num);
         return s;
 }
 
-
-/* to int */
 long long BigInt::toInt(string s) {
         long long result=0;
         for(int i=0;i<s.length();i++) 
-                result=(result*10) + (result[i]-'0');
+                result=(result*10) + (s[i]-'0');
         
         return result;
 }
-
-
 
 
 
