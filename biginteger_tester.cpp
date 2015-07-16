@@ -17,7 +17,7 @@ int main(void) {
         cout << "Enter two numbers separated by a space: ";
         cin >> c1 >> c2;
         cout << "You Entered:\n" << c1 << " and " << c2 << endl;
-/*
+
         //implement menu
         int choice;
         do {
@@ -44,9 +44,10 @@ int main(void) {
                         default:
                                 //not expected
                                 cout << "Please select a valid menu item." << endl;
+                                
                 }
         }while(choice!=4);
-*/
+
         return 0;
 }
 
