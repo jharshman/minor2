@@ -21,8 +21,8 @@ class BigInt {
 
         public:
                 /* Constructors & Destructors */
-                //BigInt();
-                BigInt(string num=0); // defaults to zero
+                BigInt();
+                BigInt(string num);
                 BigInt(string num, bool sign);
                 BigInt(int num);
                 ~BigInt() {};

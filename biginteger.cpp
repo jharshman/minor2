@@ -6,6 +6,12 @@
 
 #include "biginteger.h"
 
+/* default constructor */
+BigInt::BigInt() {
+        num="0";
+        sign=false;
+}
+
 /* constructor for unknown signed values */
 BigInt::BigInt(string num) {
 
