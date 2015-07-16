@@ -55,13 +55,13 @@ BigInt::BigInt(const BigInt &orig) {
 }
 
 /* set num variable */
-void BigInt::setNum(string num) {
-        num=num;
+void BigInt::setNum(string s) {
+        num=s;
 }
 
 /* set sign variable */
-void BigInt::setSign(bool sign) {
-        sign=sign;
+void BigInt::setSign(bool s) {
+        sign=s;
 }
 
 // NOTE: don't need get methods.  Those are inlined in the header file
@@ -86,21 +86,26 @@ ostream &operator<<(ostream &out, const BigInt &bi) {
         else
                 sign="";
 
-        out << sign << bi.getNum() << endl;
+        out << sign << bi.getNum();
         return out;
 }
 
 istream &operator>>(istream &in, BigInt &bi) {
         string number;
         in >> number;
+        cout << "registered "<< number << endl;
         if(isdigit(number[0])) {
+                cout << "number @ 0 index is a digit" << endl;
                 bi.setNum(number);
                 bi.setSign(false);
         }
         else {
+                cout << "number @ 0 index is not a digit" << endl;
                 bi.setNum(number.substr(1));
                 bi.setSign(true);
         }
+
+        return in;
 }
 
 bool BigInt::operator>(BigInt num) {

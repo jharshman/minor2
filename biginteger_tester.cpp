@@ -14,9 +14,9 @@ int main(void) {
         BigInt c1, c2;
 
         //Get our  numbers to tinker with
- //       cout << "Enter two numbers separated by a space:";
-  //      cin >> c1 >> c2;
-   //     cout << "You Entered:\n" << c1 << " and " << c2 << endl;
+        cout << "Enter two numbers separated by a space: ";
+        cin >> c1 >> c2;
+        cout << "You Entered:\n" << c1 << " and " << c2 << endl;
 /*
         //implement menu
         int choice;
