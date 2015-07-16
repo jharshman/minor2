@@ -124,6 +124,7 @@ BigInt BigInt::operator-(BigInt num) {
         return (*this) + num;
 }
 
+// Might not need
 BigInt::operator string() {
         string s;
         if(getSign()) {
@@ -135,7 +136,7 @@ BigInt::operator string() {
         return s;
 }
 
-// might not need this
+// Might not need
 BigInt& BigInt::operator[](int num) {
         return *(this+(num*sizeof(BigInt)));
 }
@@ -143,12 +144,39 @@ BigInt& BigInt::operator[](int num) {
 // --- End Operator Overloads ---
 
 
-
 // --- Private Helper Methods ---
 
 
 bool BigInt::equals(BigInt a, BigInt b) {
         return a.getNum() == b.getNum() && a.getSign() == b.getSign();
+}
+
+bool BigInt::greater(BigInt a, BigInt b) {
+        return !equals(a,b) && !less(a,b);
+}
+
+bool BigInt::less(BigInt a, BigInt b) {
+        bool s1 = a.getSign();
+        bool s2 = b.getSign();
+
+        if(s1 && !s2)
+                return true;
+        else if(!s1 && s2)
+                return false;
+        else if(!s1) {
+                if(a.getNum().length() < b.getNum().length())
+                        return true;
+                if(a.getNum().length() > b.getNum().length())
+                        return false;
+                return a.getNum() < b.getNum();
+        }
+        else {
+                if(a.getNum().length() > b.getNum().length())
+                        return true;
+                if(a.getNum().length() < b.getNum().length())
+                        return false;
+                return a.getNum().compare(b.getNum()) > 0; 
+        }
 }
 
 string BigInt::add(string a, string b) {
@@ -262,11 +290,13 @@ string BigInt::multiply(string a, string b) {
         return result;
 }
 
+// Might not need
 string BigInt::toString(long long num) {
         string s = to_string(num);
         return s;
 }
 
+// Might not need
 long long BigInt::toInt(string s) {
         long long result=0;
         for(int i=0;i<s.length();i++) 
