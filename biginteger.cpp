@@ -139,13 +139,11 @@ bool BigInt::equals(BigInt a, BigInt b) {
 
 /* add */
 string BigInt::add(string a, string b) {
-
         string result;
         char c='0';
         int diff=abs((int)(a.size()-b.size()));
 
-
-        if(a.length() > b.length())
+        if(a.length()>b.length())
                 result=a;
         else
                 result=b;
@@ -157,18 +155,100 @@ string BigInt::add(string a, string b) {
                 a.insert(0,diff,'0');
 
 
-
-        
+        //some for-loop magic for addition i found online
+        for(int i=a.size()-1;i>=0;--i) {
+                result[i]=((c-'0')+(a[i]-'0')+(b[i]-'0'))+'0';
+                if(i!=0) {
+                        if(result[i]>'9') {
+                                result[i]-=10;
+                                c='1';
+                        }
+                        else {
+                                c='0';
+                        }
+                }
+        }
+        if(add[0]>'9') {
+                result[0]-=10;
+                result.insert(0,1,'1');
+        }
+        return result;
 }
 
 /* subtract */
 string BigInt::subtract(string a, string b) {
+        string result;
+        int diff=abs((int)(a.size()-b.size()));
 
+        if(a.length()>b.length())
+                result=a;
+        else
+                result=b;
+
+
+        if(a.size()>b.size())
+                b.insert(0,diff,'0');
+        else
+                a.insert(0,diff,'0');
+
+        
+        // for-loop magic for subtraction found online
+        for(int i=a.length()-1;i>=0;--i) {
+                if(a[i]<b[i]) {
+                        a[i]+=10;
+                        a[i-1]--;
+                }
+                result[i]=((a[i]-'0')-(b[i]-'0'))+'0';
+        }
+        while(result[0]=='0' && result.length()!=1)
+                result.erase(0,1);
+
+        return result;
 }
 
 /* multiply */
 string BigInt::multiply(string a, string b) {
+       
+        string result="0";
+        string tmp;
+        int cdig;
+        int c;
 
+        if(a.length()>b.length())
+                a.swap(b);
+        
+        // for-loop magic for multiplication found online
+        for(int i=a.length()-1;i>=0;--i) {
+                tmp=b;
+                cdig=a[i]-'0';
+                c=0;
+
+                for(int j=tmp.length()-1;j>=0;--j) {
+                        tmp[j]=((tmp[j]-'0')*cdig)+c;
+
+                        if(tmp[j]>9) {
+                                c=(tmp[j]/10);
+                                tmp[j]-=(c*10);
+                        }
+                        else
+                                c=0;
+
+                        tmp[j]+='0';
+                }
+
+                if(c>0) 
+                        tmp.insert(0,1,(c+'0'));
+                
+
+                tmp.append((a.length()-i-1),'0');
+
+                result=add(result,tmp);
+        }
+
+        while(result[0]=='0' && result.length()!=1)
+                result.erase(0,1);
+
+        return result;
 }
 
 
