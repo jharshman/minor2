@@ -2,7 +2,10 @@
  * biginteger_tester.cpp
  * written by Josh Harshman
  * 07/14/15
+ *
+ * NOTE: Driver templated from previous assignment
  * */
+
 #include "biginteger.h"
 
 int main(void) {
@@ -11,11 +14,10 @@ int main(void) {
         BigInt c1, c2;
 
         //Get our  numbers to tinker with
-        cout << "Enter two numbers:";
+        cout << "Enter two numbers separated by a space:";
         cin >> c1 >> c2;
         cout << "You Entered:\n" << c1 << " and " << c2 << endl;
-
-
+/*
         //implement menu
         int choice;
         do {
@@ -44,7 +46,7 @@ int main(void) {
                                 cout << "Please select a valid menu item." << endl;
                 }
         }while(choice!=4);
-
+*/
         return 0;
 }
 
