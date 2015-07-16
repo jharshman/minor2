@@ -39,25 +39,25 @@ class BigInt {
                 BigInt absolute();
 
                 /* Overloaded Operators */ 
-                BigInt operator+(BigInt bi);
+                BigInt operator==(BigInt bi); // not required by assignment but comes in handy
+                BigInt operator=(BigInt bi); 
+                BigInt operator+(BigInt bi); 
                 BigInt operator-(BigInt bi);
                 BigInt operator*(BigInt bi);
-                BigInt operator/(BigInt bi);
-
+                BigInt operator string();
                 
-
         private:
                 /* helper comparative methods */
                 bool equals(BigInt a, BigInt b);
-                bool less(BigInt a, BigInt b);
-                bool greater(BingInt a, BigInt b);
+                //bool less(BigInt a, BigInt b);
+                //bool greater(BingInt a, BigInt b);
 
                 /* helper methods for math operations */
                 string add(BigInt a, BigInt b);
                 string subtract(BigInt a, BigInt b);
                 string multiply(BigInt a, BigInt b);
 
-                /* helper methods for printing output */
+                /* helper methods */
                 string toString(long long num);
                 long long toInt(string num);
 
