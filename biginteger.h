@@ -65,6 +65,9 @@ class BigInt {
                 //long long toInt(string num);
 
 }; 
+                
+                ostream &operator<<(ostream &out, const BigInt &bi);
+                istream &operator>>(istream &in, BigInt &bi);
 
 
 #endif

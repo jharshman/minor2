@@ -50,12 +50,12 @@ BigInt::BigInt(const BigInt &orig) {
 
 /* set num variable */
 void BigInt::setNum(string num) {
-        setNum(num);
+        num=num;
 }
 
 /* set sign variable */
 void BigInt::setSign(bool sign) {
-        setSign(sign);
+        sign=sign;
 }
 
 // NOTE: don't need get methods.  Those are inlined in the header file
@@ -72,6 +72,30 @@ BigInt BigInt::absolute() {
 
 
 // --- Operator Overloading ---  
+
+ostream &operator<<(ostream &out, const BigInt &bi) {
+        string sign;
+        if(bi.getSign())
+                sign="-";
+        else
+                sign="";
+
+        out << sign << bi.getNum() << endl;
+        return out;
+}
+
+istream &operator>>(istream &in, BigInt &bi) {
+        string number;
+        in >> number;
+        if(isdigit(number[0])) {
+                bi.setNum(number);
+                bi.setSign(false);
+        }
+        else {
+                bi.setNum(number.substr(1));
+                bi.setSign(true);
+        }
+}
 
 bool BigInt::operator>(BigInt num) {
         return greater((*this),num);
@@ -128,8 +152,8 @@ BigInt BigInt::operator-(BigInt num) {
         num.setSign(!num.getSign());
         return (*this) + num;
 }
-/*
-// Might not need
+
+/* //Might not need
 BigInt::operator string() {
         string s;
         if(getSign()) {
@@ -141,7 +165,6 @@ BigInt::operator string() {
         return s;
 }
 
-// Might not need
 BigInt& BigInt::operator[](int num) {
         return *(this+(num*sizeof(BigInt)));
 }
