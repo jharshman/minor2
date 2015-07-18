@@ -93,14 +93,13 @@ ostream &operator<<(ostream &out, const BigInt &bi) {
 istream &operator>>(istream &in, BigInt &bi) {
         string number;
         in >> number;
-        cout << "registered "<< number << endl;
         if(isdigit(number[0])) {
-                cout << "number @ 0 index is a digit" << endl;
+                //cout << "number @ 0 index is a digit" << endl; //debug
                 bi.setNum(number);
                 bi.setSign(false);
         }
         else {
-                cout << "number @ 0 index is not a digit" << endl;
+                //cout << "number @ 0 index is not a digit" << endl; //debug
                 bi.setNum(number.substr(1));
                 bi.setSign(true);
         }
