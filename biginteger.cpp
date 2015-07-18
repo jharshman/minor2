@@ -219,7 +219,7 @@ string BigInt::add(string a, string b) {
                 a.insert(0,diff,'0');
 
 
-        //some for-loop magic for addition i found online
+        //some for-loop magic for addition 
         for(int i=a.size()-1;i>=0;--i) {
                 result[i]=((c-'0')+(a[i]-'0')+(b[i]-'0'))+'0';
                 if(i!=0) {
@@ -255,7 +255,7 @@ string BigInt::subtract(string a, string b) {
                 a.insert(0,diff,'0');
 
         
-        // for-loop magic for subtraction found online
+        // for-loop magic for subtraction based off addition routine
         for(int i=a.length()-1;i>=0;--i) {
                 if(a[i]<b[i]) {
                         a[i]+=10;
